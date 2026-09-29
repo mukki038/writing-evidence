@@ -23,8 +23,9 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { locale, t } = await getDict()
+  const configured = isSupabaseConfigured()
   let signedIn = false
-  if (isSupabaseConfigured()) {
+  if (configured) {
     try {
       signedIn = !!(await currentUserId(await createClient()))
     } catch {
@@ -53,7 +54,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   </button>
                 </form>
               </>
-            ) : (
+            ) : !configured ? null : (
               <>
                 <Link href="/login">{t.nav.login}</Link>
                 <Link href="/signup" className="nav-cta">

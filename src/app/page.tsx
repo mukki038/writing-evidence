@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getDict } from '@/lib/i18n-server'
+import { isSupabaseConfigured } from '@/lib/supabase/config'
 
 export default async function Home() {
   const { t } = await getDict()
@@ -14,9 +15,11 @@ export default async function Home() {
           <Link href="/demo" className="btn btn--primary btn--large">
             {l.ctaDemo}
           </Link>
-          <Link href="/signup" className="btn btn--large">
-            {l.ctaSignup}
-          </Link>
+          {isSupabaseConfigured() && (
+            <Link href="/signup" className="btn btn--large">
+              {l.ctaSignup}
+            </Link>
+          )}
         </div>
         <p className="note">{l.notDetector}</p>
       </section>
