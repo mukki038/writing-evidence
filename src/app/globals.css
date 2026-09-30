@@ -246,7 +246,8 @@ button, input { font: inherit; color: inherit; }
 .demo-editor .editor-shell { border: 0; box-shadow: none; }
 .demo-editor .doc-editor { min-height: 360px; }
 .demo-editor .statusbar { margin: 0; border: 0; border-top: 1px solid var(--line); border-radius: 0 0 var(--radius) var(--radius); position: static; }
-.demo-actions { display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 12px; border-top: 1px solid var(--line); }
+.demo-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; padding: 10px 12px; border-top: 1px solid var(--line); }
+.demo-hint { flex-basis: 100%; margin: 2px 0 0; line-height: 1.45; }
 .demo-live { padding: 16px; display: grid; gap: 12px; position: sticky; top: 70px; max-height: calc(100dvh - 90px); overflow: auto; }
 .demo-live h2 { margin: 0; }
 .small-h { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 0; }

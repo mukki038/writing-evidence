@@ -90,6 +90,7 @@ export function DemoClient({ t, locale, canSignUp }: { t: Dict; locale: Locale; 
               <input type="checkbox" checked={showOrigins} onChange={(e) => setShowOrigins(e.target.checked)} />
               {t.demo.showOrigins}
             </label>
+            <p className="demo-hint muted small">{t.demo.aiHint}</p>
           </div>
           <div className="statusbar statusbar--saved">
             <span className="rec-dot" aria-hidden />

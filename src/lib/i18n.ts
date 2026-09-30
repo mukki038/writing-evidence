@@ -133,7 +133,8 @@ const uz = {
   demo: {
     title: 'Demo: yozish jarayoni qanday qayd qilinadi',
     intro: 'Pastda yozing, boshqa joydan matn paste qiling, o‘chiring. O‘ng tomonda (telefonda — pastda) jarayon jonli ko‘rinadi. Hech narsa serverga yuborilmaydi.',
-    aiButton: 'AI taklifi qanday belgilanishini ko‘rish',
+    aiButton: 'AI matn namunasini qo‘shish',
+    aiHint: 'Bu tugma tayyor namuna gap qo‘shadi — AI qo‘shgan matn qanday belgilanishini ko‘rsatish uchun. Haqiqiy AI tahlil va variantlar keyingi bosqichda. So‘zlar ostidagi qizil chiziq — brauzeringizning imlo tekshiruvi: so‘zni o‘ng tugma bilan bosing (telefonda — ustiga bosing), taklifni tanlasangiz, u “Avtotuzatish” deb qayd qilinadi.',
     aiSample: 'Recent studies suggest that feedback timing influences how second-language writers revise their drafts.',
     reset: 'Tozalash',
     showOrigins: 'Manbalarni matnda ko‘rsatish',
@@ -294,7 +295,8 @@ const en: Dict = {
   demo: {
     title: 'Demo: how the writing process is recorded',
     intro: 'Type below, paste text from elsewhere, delete. The process appears live on the right (below on phones). Nothing is sent to a server.',
-    aiButton: 'See how an AI suggestion is labeled',
+    aiButton: 'Insert a sample AI sentence',
+    aiHint: 'This button inserts a fixed sample sentence to show how AI-inserted text is labeled. Real AI feedback and rewrite options come in a later phase. Red underlines are your browser’s spellcheck: right-click the word (tap it on a phone); if you pick a suggestion, it is recorded as “Autocorrect”.',
     aiSample: 'Recent studies suggest that feedback timing influences how second-language writers revise their drafts.',
     reset: 'Clear',
     showOrigins: 'Highlight sources in the text',
