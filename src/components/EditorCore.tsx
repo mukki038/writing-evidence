@@ -5,6 +5,7 @@
  */
 import { useEffect, useState } from 'react'
 import { EditorContent, useEditor, type Editor } from '@tiptap/react'
+import type { AnyExtension } from '@tiptap/core'
 import { Placeholder, UndoRedo, Dropcursor } from '@tiptap/extensions'
 import { EvidenceRecorder, schemaExtensions } from '@/lib/editor/extensions'
 import { createRecorder, type RawMutation, type Recorder } from '@/lib/evidence/recorder'
@@ -24,10 +25,12 @@ interface Props {
   onMutation: (m: RawMutation) => void
   onUpdate?: (editor: Editor) => void
   onReady?: (h: EditorHandle) => void
+  /** qo'shimcha extension'lar (masalan, feedback belgilari) — faqat yaratilishda o'qiladi */
+  extensions?: AnyExtension[]
   t: Dict
 }
 
-export function EditorCore({ initialContent, editable, onMutation, onUpdate, onReady, t }: Props) {
+export function EditorCore({ initialContent, editable, onMutation, onUpdate, onReady, extensions = [], t }: Props) {
   // recorder va signallar shu editor instance'i bilan birga yashaydi
   const onMutationRef = useLatest(onMutation)
   const [signals] = useState(() => new InputSignals())
@@ -40,6 +43,7 @@ export function EditorCore({ initialContent, editable, onMutation, onUpdate, onR
       Dropcursor,
       Placeholder.configure({ placeholder: t.editor.placeholder }),
       EvidenceRecorder.configure({ recorder }),
+      ...extensions,
     ],
     content: initialContent,
     editable,

@@ -36,7 +36,12 @@ function PrivacyUz() {
         <li>Qurilmangizda: saqlanmagan o‘zgarishlar internet qaytguncha brauzeringizda (IndexedDB) turadi.</li>
       </ul>
       <h2>Tashqi AI provayderlar</h2>
-      <p>Bu versiyada matningiz hech qanday AI provayderga yuborilmaydi.</p>
+      <p>
+        Matningiz faqat siz “Yozuvni tekshirish” yoki “3 ta variant” tugmasini bosganingizda va rozilik berganingizdan
+        keyin Anthropic kompaniyasining Claude modeliga (AQSh) tahlil uchun yuboriladi. Biz bu matnni o‘z serverimizda
+        saqlamaymiz; server qisqa muddat xotirada (kesh) ushlab turishi mumkin. Anthropic API ma’lumotlarini qayta ishlash
+        shartlari uning o‘z siyosatida belgilangan.
+      </p>
       <h2>Huquqlaringiz</h2>
       <p>Istalgan vaqtda hujjatni o‘chirishingiz mumkin. Akkauntni o‘chirish yoki savollar uchun: [KONTAKT EMAIL — ishga tushirishdan oldin to‘ldiring]</p>
     </article>
@@ -73,7 +78,11 @@ function PrivacyEn() {
         <li>On your device: unsaved changes stay in your browser (IndexedDB) until you are back online.</li>
       </ul>
       <h2>External AI providers</h2>
-      <p>In this version your text is not sent to any AI provider.</p>
+      <p>
+        Your text is sent to Anthropic’s Claude model (USA) for analysis only when you press “Check my writing” or
+        “3 options” and after you give consent. We do not store this text on our servers; the server may keep it briefly
+        in memory (cache). Anthropic’s handling of API data is governed by its own policy.
+      </p>
       <h2>Your rights</h2>
       <p>You can delete a document at any time. For account deletion or questions: [CONTACT EMAIL — fill in before launch]</p>
     </article>

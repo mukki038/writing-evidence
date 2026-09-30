@@ -274,6 +274,60 @@ button, input { font: inherit; color: inherit; }
 .show-origins [data-origin='replacement'] { text-decoration: underline dotted var(--o-replacement); }
 .show-origins [data-origin='recovered'] { background: color-mix(in srgb, var(--o-recovered) 20%, transparent); }
 
+/* ------------------------------------------------------------ AI feedback */
+.demo-left { display: grid; gap: 16px; min-width: 0; }
+.fb { border-radius: 2px; cursor: pointer; text-decoration-line: underline; text-decoration-style: wavy; text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-skip-ink: none; }
+.fb--grammar { text-decoration-color: #c2410c; }
+.fb--clarity { text-decoration-color: #2563eb; }
+.fb--repetition { text-decoration-color: #7c3aed; }
+.fb--academic_style { text-decoration-color: #0f766e; }
+.fb--citation { text-decoration-color: #b45309; text-decoration-style: dashed; }
+.fb.is-selected { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.fb-panel { padding: 16px; display: grid; gap: 10px; }
+.fb-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fb-head h2 { margin: 0; font-size: 1.05rem; }
+.fb-consent { padding: 12px; border-radius: 8px; background: var(--info-soft); display: grid; gap: 8px; }
+.fb-consent p { margin: 0; }
+.fb-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.fb-loading { height: 3px; border-radius: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); background-size: 200% 100%; animation: fb-slide 1.2s linear infinite; }
+@keyframes fb-slide { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .fb-loading { animation: none; background: var(--accent-soft); } }
+.fb-summary { margin: 0; font: 1rem/1.55 var(--serif); color: var(--ink-2); }
+.fb-resolved { display: flex; gap: 6px; flex-wrap: wrap; margin: 0; }
+.fb-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.fb-item { border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.fb-item.is-open { border-color: var(--accent); }
+.fb-item-head { display: flex; gap: 10px; align-items: baseline; width: 100%; text-align: left; background: none; border: 0; padding: 10px 12px; cursor: pointer; }
+.fb-cat { flex: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.fb-cat--grammar { color: #c2410c; }
+.fb-cat--clarity { color: #2563eb; }
+.fb-cat--repetition { color: #7c3aed; }
+.fb-cat--academic_style { color: #0f766e; }
+.fb-cat--citation { color: #b45309; }
+.fb-excerpt { font: 0.95rem/1.45 var(--serif); color: var(--ink-2); min-width: 0; overflow-wrap: anywhere; }
+.fb-body { padding: 0 12px 12px; display: grid; gap: 10px; }
+.fb-reason { margin: 0; font-size: 0.93rem; }
+.fb-variants { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.fb-variants li { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 6px; background: var(--paper); border: 1px solid var(--line); }
+.fb-variants span { font: 0.97rem/1.5 var(--serif); min-width: 0; overflow-wrap: anywhere; }
+.fb-variants .btn { flex: none; }
+.fb-note { margin: 0; }
+@media (prefers-color-scheme: dark) {
+  .fb--grammar { text-decoration-color: #fb923c; }
+  .fb--clarity { text-decoration-color: #60a5fa; }
+  .fb--repetition { text-decoration-color: #a78bfa; }
+  .fb--academic_style { text-decoration-color: #2dd4bf; }
+  .fb--citation { text-decoration-color: #fbbf24; }
+  .fb-cat--grammar { color: #fb923c; }
+  .fb-cat--clarity { color: #60a5fa; }
+  .fb-cat--repetition { color: #a78bfa; }
+  .fb-cat--academic_style { color: #2dd4bf; }
+  .fb-cat--citation { color: #fbbf24; }
+}
+@media (max-width: 760px) {
+  .fb-variants li { flex-direction: column; align-items: stretch; }
+}
+
 /* ------------------------------------------------------------ prose */
 .prose { max-width: 720px; }
 .prose h2 { margin-top: 1.6em; }

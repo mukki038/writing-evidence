@@ -3,6 +3,8 @@ import { useCallback, useRef, useState } from 'react'
 import Link from 'next/link'
 import type { Editor } from '@tiptap/react'
 import { EditorCore, type EditorHandle } from './EditorCore'
+import { FeedbackPanel } from './FeedbackPanel'
+import { FeedbackHighlights } from '@/lib/editor/feedback-plugin'
 import { TimelineView } from './TimelineView'
 import { DemoModel } from '@/lib/evidence/demo-model'
 import { composition, type Composition } from '@/lib/evidence/composition'
@@ -13,10 +15,23 @@ import type { TimelineData } from '@/lib/evidence/timeline'
 import { EMPTY_DOC } from '@/lib/editor/extensions'
 import type { Dict, Locale } from '@/lib/i18n'
 
-export function DemoClient({ t, locale, canSignUp }: { t: Dict; locale: Locale; canSignUp: boolean }) {
+const EXTRA_EXTENSIONS = [FeedbackHighlights]
+
+export function DemoClient({
+  t,
+  locale,
+  canSignUp,
+  feedbackEnabled,
+}: {
+  t: Dict
+  locale: Locale
+  canSignUp: boolean
+  feedbackEnabled: boolean
+}) {
   const [key, setKey] = useState(0)
   const model = useRef(new DemoModel())
   const handle = useRef<EditorHandle | null>(null)
+  const [editorHandle, setEditorHandle] = useState<EditorHandle | null>(null)
   const [data, setData] = useState<TimelineData>(() => model.current.data('Demo'))
   const [comp, setComp] = useState<Composition | null>(null)
   const [recent, setRecent] = useState(model.current.recent)
@@ -56,6 +71,7 @@ export function DemoClient({ t, locale, canSignUp }: { t: Dict; locale: Locale; 
     setData(model.current.data('Demo'))
     setComp(null)
     setRecent([])
+    setEditorHandle(null)
     setKey((k) => k + 1)
   }
 
@@ -67,6 +83,7 @@ export function DemoClient({ t, locale, canSignUp }: { t: Dict; locale: Locale; 
       </header>
 
       <div className="demo-grid">
+        <div className="demo-left">
         <section className={`demo-editor card ${showOrigins ? 'show-origins' : ''}`}>
           <EditorCore
             key={key}
@@ -76,13 +93,17 @@ export function DemoClient({ t, locale, canSignUp }: { t: Dict; locale: Locale; 
             onUpdate={(e) => refresh(e)}
             onReady={(h) => {
               handle.current = h
+              setEditorHandle(h)
             }}
+            extensions={EXTRA_EXTENSIONS}
             t={t}
           />
           <div className="demo-actions">
-            <button className="btn btn--small" onClick={insertAi}>
-              {t.demo.aiButton}
-            </button>
+            {!feedbackEnabled && (
+              <button className="btn btn--small" onClick={insertAi}>
+                {t.demo.aiButton}
+              </button>
+            )}
             <button className="btn btn--small btn--ghost" onClick={reset}>
               {t.demo.reset}
             </button>
@@ -90,13 +111,19 @@ export function DemoClient({ t, locale, canSignUp }: { t: Dict; locale: Locale; 
               <input type="checkbox" checked={showOrigins} onChange={(e) => setShowOrigins(e.target.checked)} />
               {t.demo.showOrigins}
             </label>
-            <p className="demo-hint muted small">{t.demo.aiHint}</p>
+            <p className="demo-hint muted small">
+              {!feedbackEnabled && `${t.demo.aiHint} `}
+              {t.demo.spellHint}
+            </p>
           </div>
           <div className="statusbar statusbar--saved">
             <span className="rec-dot" aria-hidden />
             <span>{t.editor.recordActive}</span>
           </div>
         </section>
+
+        {feedbackEnabled && <FeedbackPanel key={key} handle={editorHandle} t={t} locale={locale} />}
+        </div>
 
         <aside className="demo-live card">
           <h2>{t.demo.live}</h2>

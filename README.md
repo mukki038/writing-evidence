@@ -44,10 +44,26 @@ cp .env.example .env.local   # qiymatlarni to‘ldiring
 npm run dev                  # http://localhost:3000
 ```
 
+## 2a. AI yozuv maslahati (demo’da, TZ MVP-B dan oldinroq)
+
+- `/demo` → **Yozuvni tekshirish**: grammatika, aniqlik, takror, akademik uslub, manba bo‘yicha joylar belgilanadi (AI/inson bahosi YO‘Q).
+- Belgini bosing → sababi → **3 ta variant** → **Qo‘llash**. Faqat o‘sha parcha almashadi va timeline’da **AI taklifi** (`origin: ai`) deb qayd qilinadi.
+- **O‘zim tuzataman** → parcha tanlanadi, talaba o‘zi yozadi (typed).
+- Birinchi marta rozilik so‘raladi (matn Anthropic’ga yuboriladi, bizda saqlanmaydi).
+
+Yoqish uchun Vercel → Settings → Environment Variables:
+
+```
+ANTHROPIC_API_KEY=sk-ant-...        # Sensitive
+ANTHROPIC_MODEL=claude-haiku-4-5-20251001   # ixtiyoriy
+```
+
+Himoya: bir IP ga 10 daqiqada 8 tahlil / 40 variant, instance’ga kuniga 300 tahlil, faqat o‘z saytimizdan so‘rov, kesh, Vercel Firewall rate limit. Asosiy xarajat chegarasi — Anthropic Console’dagi oylik limit.
+
 ## 3. Testlar
 
 ```bash
-npm test          # 37 ta test: editor mantiqi + haqiqiy Postgres (PGlite) ichida SQL
+npm test          # 52 ta test: editor mantiqi + haqiqiy Postgres (PGlite) ichida SQL
 npm run typecheck
 npm run build
 ```
